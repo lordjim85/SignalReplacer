@@ -46,6 +46,7 @@ SOFTWARE PREPARATION
 14. Create the following file: touch redirect-request.py
 15. Edit the redirect-request.py and paster the following code:
 
+```
 from mitmproxy import http
 import yaml
 import io
@@ -62,12 +63,14 @@ def request(flow: http.HTTPFlow) -> None:
                 flow.response = http.Response.make(302, b'', http.Headers(Location=str(redirectURL), Content_Length='0'))
                 if flow.request.method == "GET":
                    flow.response.headers['Content-Type'] = "application/vnd.hbbtv.xhtml+xml"
+```
 
 15. We will edit the redirects.yaml after setting up mitmproxy.
 16. Switch back to root.
 17. Create the following file for the purpose of running the mimtproxy as a service: nano /etc/systemd/system/mitmproxy.service
 18. Paste the following contents:
 
+```
 [Unit]
 Description=mitmweb service
 After=network-online.target
@@ -100,12 +103,14 @@ ReadWriteDirectories=/opt/mitmproxy
 
 [Install]
 WantedBy=multi-user.target
+```
 
 18. Save the file.
 19. Enable the service: systemctl enable mitmproxy
 20. Edit the dnsmasq.conf: nano /etc/dnsmasq.conf
 21. Clear the /etc/dnsmasq.conf file (truncate -s 0 /etc/dnsmasq.conf) and paste the following initial settings (adjust the network settings to your preference):
 
+```
 interface=br0
 domain-needed
 bogus-priv
@@ -117,6 +122,7 @@ dhcp-range=192.168.65.2,192.168.65.240,255.255.255.0,72h
 address=/hbbtv-dev-app.localdomain/
 local=/localdomain/
 domain=localdomain
+```
 
 22. Enable the dnsmasq as a service: systemctl enable dnsmasq
 23. Let's setup the network bridge.
@@ -124,6 +130,7 @@ domain=localdomain
 25. Create the following file: nano /etc/netplan/10-br0-network.yaml
 26. Paste the contents:
 
+```
 network:
   version: 2
   renderer: networkd
@@ -146,11 +153,13 @@ network:
       parameters:
         stp: false
         forward-delay: 0
-        
+```
+
 27. Save the file.
 28. Edit the /etc/hostapd/hostapd.conf: nano /etc/hostapd/hostapd.conf
 29. Paste the following contents to setup an Access Point (the network will be named: SignalReplacer with password: MyCustomPassword123, but you can change to anything you want) and remember to also change the country code to your country equivalent:
 
+```
 logger_syslog=-1
 logger_syslog_level=2
 logger_stdout=-1
@@ -180,6 +189,7 @@ rsn_pairwise=CCMP
 
 macaddr_acl=0
 wmm_enabled=1
+```
 
 27. Save the file.
 28. Setup hostapd to auto start with the system: systemctl unmask hostapd && systemctl enable hostapd
