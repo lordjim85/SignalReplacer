@@ -260,7 +260,7 @@ net/ipv6/conf/all/forwarding=1
 
 32. Let's setup the rules for our firewall to capture HTTP traffic.
 33. Edit the before.rules file: nano /etc/ufw/before.rules
-34. And paster after last COMMIT the following code:
+34. And paste after last COMMIT the following code:
 
 ```
 # NAT
