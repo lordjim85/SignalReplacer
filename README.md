@@ -5,6 +5,7 @@ The device we are creating is essentialy a small router with ability to capture 
 Prerequisites:
 1. Some kind of computer with two ethernet ports or one ethernet port and WiFi capable of working as an Access-Point
 2. Some time :)
+3. A TV set with HbbTV Support :)
 
 This documentation will be based on Raspberry PI 5 but you can use any small form factor computer or any PC you have laying around.
 
