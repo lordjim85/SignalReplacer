@@ -79,36 +79,21 @@ After=network-online.target
 Type=simple
 User=oper
 Group=oper
-ExecStart="/home/oper/mitmproxy/.local/bin/mitmweb --mode regular --showhost --web-port 8081 --web-host 0.0.0.0 --no-web-open-browser --listen-host 0.0.0.0 --http2 --listen-port 8080 -s /home/oper/redirect-request.py --set ignore_hosts=google.com"
+ExecStart=/home/oper/.local/bin/mitmweb --mode transparent --showhost --web-port 8081 --web-host 0.0.0.0 --no-web-open-browser --listen-host 0.0.0.0 --http2 --listen-port 8080 -s /home/oper/redirect-request.py --set ignore_hosts='google.com' --set web_password='mitmproxy'
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
 LimitNPROC=4096
-PrivateTmp=true
-PrivateDevices=true
-ProtectHome=true
-ProtectSystem=strict
-NoNewPrivileges=true
-DevicePolicy=closed
-ProtectControlGroups=yes
-ProtectKernelModules=yes
-ProtectKernelTunables=yes
-RestrictNamespaces=yes
-RestrictRealtime=yes
-RestrictSUIDSGID=yes
-LockPersonality=yes
-WorkingDirectory=/opt/mitmproxy
-ReadOnlyDirectories=/
-ReadWriteDirectories=/opt/mitmproxy
 
 [Install]
 WantedBy=multi-user.target
 ```
 
 18. Save the file.
-19. Enable the service: systemctl enable mitmproxy
-20. Edit the dnsmasq.conf: nano /etc/dnsmasq.conf
-21. Clear the /etc/dnsmasq.conf file (truncate -s 0 /etc/dnsmasq.conf) and paste the following initial settings (adjust the network settings to your preference):
+19. The password to the mitmproxy web interface will be: mitmproxy
+20. Enable the service: systemctl enable mitmproxy
+21. Edit the dnsmasq.conf: nano /etc/dnsmasq.conf
+22. Clear the /etc/dnsmasq.conf file (truncate -s 0 /etc/dnsmasq.conf) and paste the following initial settings (adjust the network settings to your preference):
 
 ```
 interface=br0
