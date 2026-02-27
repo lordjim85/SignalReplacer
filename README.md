@@ -283,4 +283,4 @@ http://[some link you acquired]: https://your_computers_local_network_ip_address
 6. Enter the channel again.
 7. Now you should see your HbbTV application.
 
-Big thanks to the authors of mitmproxy, the Raspberry PI foundation and maintaners of the Debian distrubution
+Big thanks to the authors of mitmproxy, the Raspberry PI foundation and maintaners of the Debian distrubution for making this project possible! :) 
