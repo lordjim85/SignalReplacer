@@ -105,7 +105,7 @@ server=8.8.8.8
 server=8.8.4.4
 cache-size=1000
 dhcp-range=192.168.65.2,192.168.65.240,255.255.255.0,72h
-address=/hbbtv-dev-app.localdomain/
+#address=/hbbtv-dev-app.localdomain/192.168.65.2/
 local=/localdomain/
 domain=localdomain
 ```
