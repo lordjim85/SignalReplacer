@@ -39,7 +39,7 @@ SOFTWARE PREPARATION
 7. Reboot the device if necessary.
 8. Switch to root again.
 9. Let's install required software:
-10. apt install pipx dnsmasq bridge-utils hostapd
+10. apt install pipx dnsmasq bridge-utils hostapd ufw
 11. Exit root: exit
 12. Let's install mitmproxy: pipx install mitmproxy
 13. Create the following file: touch redirects.yaml
@@ -195,5 +195,87 @@ wmm_enabled=1
 28. Setup hostapd to auto start with the system: systemctl unmask hostapd && systemctl enable hostapd
 29. Run: raspi-config
 30. Under the: 5. Localisation Options -> L4 Wlan Country -> Set the country Code
-31. We are good to go.
-32. Reboot the Raspberry PI 5.
+31. Let's setup UFW now.
+32. Let's edit the defaults file for UFW: nano /etc/default/ufw
+33. Now paste the following settings:
+
+```
+# /etc/default/ufw
+#
+
+# Set to yes to apply rules to support IPv6 (no means only IPv6 on loopback
+# accepted). You will need to 'disable' and then 'enable' the firewall for
+# the changes to take affect.
+IPV6=yes
+
+# Set the default input policy to ACCEPT, DROP, or REJECT. Please note that if
+# you change this you will most likely want to adjust your rules.
+DEFAULT_INPUT_POLICY="ACCEPT"
+
+# Set the default output policy to ACCEPT, DROP, or REJECT. Please note that if
+# you change this you will most likely want to adjust your rules.
+DEFAULT_OUTPUT_POLICY="ACCEPT"
+
+# Set the default forward policy to ACCEPT, DROP or REJECT.  Please note that
+# if you change this you will most likely want to adjust your rules
+DEFAULT_FORWARD_POLICY="ACCEPT"
+
+# Set the default application policy to ACCEPT, DROP, REJECT or SKIP. Please
+# note that setting this to ACCEPT may be a security risk. See 'man ufw' for
+# details
+DEFAULT_APPLICATION_POLICY="SKIP"
+
+# By default, ufw only touches its own chains. Set this to 'yes' to have ufw
+# manage the built-in chains too. Warning: setting this to 'yes' will break
+# non-ufw managed firewall rules
+MANAGE_BUILTINS=yes
+
+#
+# IPT backend
+#
+# only enable if using iptables backend
+IPT_SYSCTL=/etc/ufw/sysctl.conf
+
+# Extra connection tracking modules to load. IPT_MODULES should typically be
+# empty for new installations and modules added only as needed. See
+# 'CONNECTION HELPERS' from 'man ufw-framework' for details. Complete list can
+# be found in net/netfilter/Kconfig of your kernel source. Some common modules:
+# nf_conntrack_irc, nf_nat_irc: DCC (Direct Client to Client) support
+# nf_conntrack_netbios_ns: NetBIOS (samba) client support
+# nf_conntrack_pptp, nf_nat_pptp: PPTP over stateful firewall/NAT
+# nf_conntrack_ftp, nf_nat_ftp: active FTP support
+# nf_conntrack_tftp, nf_nat_tftp: TFTP support (server side)
+# nf_conntrack_sane: sane support
+IPT_MODULES=
+```
+
+30. Let's edit the ufw sysctl.conf: nano /etc/ufw/sysctl.conf
+31. Let's enable ipv4 and ipv6 forwarding by uncommenting the following lines:
+
+```
+net/ipv4/ip_forward=1
+net/ipv6/conf/default/forwarding=1
+net/ipv6/conf/all/forwarding=1
+```
+
+32. Let's setup the rules for our firewall to capture HTTP traffic.
+33. Edit the before.rules file: nano /etc/ufw/before.rules
+34. And paster after last COMMIT the following code:
+
+```
+# NAT
+*nat
+
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -i br0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+:POSTROUTING ACCEPT [0:0]
+
+-A POSTROUTING -o eth1 -j MASQUERADE
+
+COMMIT
+```
+
+32. Apply the changes by issuing the following command: ufw enable && ufw reload
+33. We are ready.
+34. Reboot and let's start developing applications.
