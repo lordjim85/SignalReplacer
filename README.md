@@ -142,8 +142,9 @@ network:
 ```
 
 27. Save the file.
-28. Edit the /etc/hostapd/hostapd.conf: nano /etc/hostapd/hostapd.conf
-29. Paste the following contents to setup an Access Point (the network will be named: SignalReplacer with password: MyCustomPassword123, but you can change to anything you want) and remember to also change the country code to your country equivalent:
+28. Execut the following command: sudo netplan apply
+29. Edit the /etc/hostapd/hostapd.conf: nano /etc/hostapd/hostapd.conf
+30. Paste the following contents to setup an Access Point (the network will be named: SignalReplacer with password: MyCustomPassword123, but you can change to anything you want) and remember to also change the country code to your country equivalent:
 
 ```
 logger_syslog=-1
