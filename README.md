@@ -9,7 +9,7 @@ This documentation will be based on Raspberry PI 5 but you can use any small for
 
 Let's start:
 
-INITIAL SETUP
+**INITIAL SETUP**
 
 1. Prepare the hardware, install the operating system.
 2. In this case use an SD card with minimal size of 32-64GB.
@@ -28,7 +28,7 @@ This completes the INTIAL SETUP.
 
 Now let's prepare the Raspberry PI 5 for our specific use case :)
 
-SOFTWARE PREPARATION
+**SOFTWARE PREPARATION**
 
 1. Switch to the root user (sudo -s -H)
 2. Start openssh server: systemctl ssh start
@@ -42,9 +42,10 @@ SOFTWARE PREPARATION
 10. apt install pipx dnsmasq bridge-utils hostapd ufw
 11. Exit root: exit
 12. Let's install mitmproxy: pipx install mitmproxy
-13. Create the following file: touch redirects.yaml
-14. Create the following file: touch redirect-request.py
-15. Edit the redirect-request.py and paster the following code:
+13. Let's add pyyaml to mitmproxy: pipx inject mimtproxy pyyaml
+14. Create the following file: touch redirects.yaml
+15. Create the following file: touch redirect-request.py
+16. Edit the redirect-request.py and paster the following code:
 
 ```
 from mitmproxy import http
@@ -264,3 +265,18 @@ COMMIT
 32. Apply the changes by issuing the following command: ufw enable && ufw reload
 33. We are ready.
 34. Reboot and let's start developing applications.
+
+**USAGE**
+
+1. Connect to the SignalReplacer WiFi Network your laptop and TV set.
+2. Enter in the web browser on the computer: http://192.168.65.1:8081
+3. Switch channels on the TV set with HbbTV enabled and save first links with http:// for the channels you want to replace with a development application.
+4. Edit the redirects.yaml on the Raspberry PI 5 and add entries in the following format:
+
+```
+http://[some link you acquired]: http://your_computers_local_network_ip_address_with_the_application_using_http/
+http://[some link you acquired]: https://your_computers_local_network_ip_address_with_the_application_using_https/
+```
+
+6. Enter the channel again.
+7. Now you should see your HbbTV application.
