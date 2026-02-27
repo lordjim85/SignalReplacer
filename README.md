@@ -19,7 +19,7 @@ Let's start:
 6. Insert the card to Raspberry PI 5.
 7. Boot the Raspberry PI 5.
 8. Setup an user name and a password for the user.
-9. We will user username "oper" for the purpose of this documentation.
+9. We will use username "oper" for the purpose of this documentation.
 10. Login using credentials from above.
 11. Connect the ethernet in the Raspberry PI 5.
 12. Attach the second USB based ethernet card.
