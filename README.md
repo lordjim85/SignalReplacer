@@ -112,7 +112,7 @@ domain=localdomain
 
 22. Enable the dnsmasq as a service: systemctl enable dnsmasq
 23. Let's setup the network bridge.
-24. We will use the USB Ethernet adapter with the WiFi built-in to the Raspberry PI 5 to create the bridge.
+24. We will use the Raspberry PI 5 Ethernet adapter with the WiFi that is built-in to create the bridge.
 25. Create the following file: nano /etc/netplan/10-br0-network.yaml
 26. Paste the contents:
 
