@@ -1,5 +1,6 @@
 # Signal Replacer
-A documentation on how to create a special tool for the purpose of developing HbbTV applications
+A documentation on how to create a special tool for the purpose of developing HbbTV applications.
+The device we are creating is essentialy a small router with ability to capture network traffic on port 80 and redirect to another port, host or domain.
 
 Prerequisites:
 1. Some kind of computer with two ethernet ports or one ethernet port and WiFi capable of working as an Access-Point
@@ -270,9 +271,9 @@ COMMIT
 **USAGE**
 
 1. Connect to the SignalReplacer WiFi Network your laptop and TV set.
-2. Enter in the web browser on the computer: http://192.168.65.1:8081
+2. Enter in the web browser on the computer: http://192.168.65.1:8081 (the password is mitmproxy if you haven't changed it earlier).
 3. Switch channels on the TV set with HbbTV enabled and save first links with http:// for the channels you want to replace with a development application.
-4. Edit the redirects.yaml on the Raspberry PI 5 and add entries in the following format:
+4. Edit the redirects.yaml in the /home/oper/redirects.yaml on the Raspberry PI 5 and add entries in the following format:
 
 ```
 http://[some link you acquired]: http://your_computers_local_network_ip_address_with_the_application_using_http/
@@ -281,3 +282,5 @@ http://[some link you acquired]: https://your_computers_local_network_ip_address
 
 6. Enter the channel again.
 7. Now you should see your HbbTV application.
+
+Big thanks to the authors of mitmproxy, the Raspberry PI foundation and maintaners of the Debian distrubution
