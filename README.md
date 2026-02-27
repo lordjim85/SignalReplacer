@@ -79,7 +79,7 @@ After=network-online.target
 Type=simple
 User=oper
 Group=oper
-ExecStart=/home/oper/mitmproxy/.local/bin/mitmweb --mode regular --showhost --web-port 8081 --web-host 0.0.0.0 --no-web-open-browser --listen-host 0.0.0.0 --http2 --listen-port 8080 -s /home/oper/redirect-request.py --set ignore_hosts='google.com'
+ExecStart="/home/oper/mitmproxy/.local/bin/mitmweb --mode regular --showhost --web-port 8081 --web-host 0.0.0.0 --no-web-open-browser --listen-host 0.0.0.0 --http2 --listen-port 8080 -s /home/oper/redirect-request.py --set ignore_hosts=google.com"
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
