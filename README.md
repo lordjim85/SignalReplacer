@@ -54,7 +54,7 @@ from mitmproxy import http
 import yaml
 import io
 
-REDIRECTS_FILE = './redirects.yaml'
+REDIRECTS_FILE = '/home/oper/redirects.yaml'
 
 def request(flow: http.HTTPFlow) -> None:
     with open(REDIRECTS_FILE) as config_file:
