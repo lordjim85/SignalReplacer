@@ -44,7 +44,7 @@ Now let's prepare the Raspberry PI 5 for our specific use case :)
 10. apt install pipx dnsmasq bridge-utils hostapd ufw
 11. Exit root: exit
 12. Let's install mitmproxy: pipx install mitmproxy
-13. Let's add pyyaml to mitmproxy: pipx inject mimtproxy pyyaml
+13. Let's add pyyaml to mitmproxy: pipx inject mitmproxy pyyaml
 14. Create the following file: touch redirects.yaml
 15. Create the following file: touch redirect-request.py
 16. Edit the redirect-request.py and paster the following code:
