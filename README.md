@@ -95,8 +95,9 @@ WantedBy=multi-user.target
 18. Save the file.
 19. The password to the mitmproxy web interface will be: mitmproxy
 20. Enable the service: systemctl enable mitmproxy
-21. Edit the dnsmasq.conf: nano /etc/dnsmasq.conf
-22. Clear the /etc/dnsmasq.conf file (truncate -s 0 /etc/dnsmasq.conf) and paste the following initial settings (adjust the network settings to your preference):
+22. Clear the /etc/dnsmasq.conf file: truncate -s 0 /etc/dnsmasq.conf
+23. Edit the dnsmasq.conf: nano /etc/dnsmasq.conf
+24. Paste the following initial settings (adjust the network settings to your preference):
 
 ```
 interface=br0
