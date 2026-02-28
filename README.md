@@ -33,7 +33,7 @@ Now let's prepare the Raspberry PI 5 for our specific use case :)
 **SOFTWARE PREPARATION**
 
 1. Switch to the root user (sudo -s -H)
-2. Start openssh server: systemctl ssh start
+2. Start openssh server: systemctl start ssh
 3. Enable the ssh service: systemctl enable ssh
 4. Run: apt update
 5. Run: apt upgrade
