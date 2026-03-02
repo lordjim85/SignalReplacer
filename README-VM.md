@@ -1,7 +1,7 @@
 # Signal Replacer using a Virtual Machine on Mac OS X (Apple Silicon)
 
 A documentation on how to create a special tool for the purpose of developing HbbTV applications.
-The device we are creating is essentialy a small router with ability to capture network traffic on port 80 and redirect to another port, host or domain.
+The Virtual Machine we are creating is essentialy a small router with ability to capture network traffic on port 80 and redirect to another port, host or domain.
 
 Prerequisites:
 1. An Apple Mac with some kind of virtualization software. In this tutorial I will be using UTM.
