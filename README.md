@@ -17,14 +17,15 @@ Let's start:
 2. In this case use an SD card with minimal size of 32-64GB.
 3. Download the Raspberry PI Imager: https://www.raspberrypi.com/software/ for your preffered platform.
 4. We will be using the "Lite" variant of Raspberry PI OS. You can grab it from here: https://www.raspberrypi.com/software/operating-systems/
-5. Prepare the SD Card using Raspberry PI Imager.
-6. Insert the card to Raspberry PI 5.
-7. Boot the Raspberry PI 5.
-8. Setup an user name and a password for the user.
-9. We will use username "oper" for the purpose of this documentation.
-10. Login using credentials from above.
-11. Connect the ethernet in the Raspberry PI 5.
-12. Attach the second USB based ethernet card.
+5. 2026 EDIT: When using Raspbian OS based on Trixie in order to get mitmproxy to work you will an 64-bit image of the operating system.
+6. Prepare the SD Card using Raspberry PI Imager.
+7. Insert the card to Raspberry PI 5.
+8. Boot the Raspberry PI 5.
+9. Setup an user name and a password for the user.
+10. We will use username "oper" for the purpose of this documentation.
+11. Login using credentials from above.
+12. Connect the ethernet in the Raspberry PI 5.
+13. Attach the second USB based ethernet card.
 
 This completes the INTIAL SETUP.
 
